@@ -19,6 +19,17 @@ class Person(Context):
             else:
                 pass
 
+    def apologize(self):
+        for c in reversed(self.layers):
+            if 'base' == c:
+                self.apologize_base()
+                break
+            elif 'jp' == c:
+                self.apologize_jp()
+                break
+            else:
+                pass
+
     def my_name(self):
         print(self.name)
 
@@ -27,6 +38,12 @@ class Person(Context):
 
     def greet_jp(self):
         print("こんにちは")
+
+    def apologize_base(self):
+        print("person base apologize")
+
+    def apologize_jp(self):
+        print("ごめんなさい")
 
 
 class Cat(Context):
@@ -45,6 +62,17 @@ class Cat(Context):
             else:
                 pass
 
+    def fawn_on(self):
+        for c in reversed(self.layers):
+            if 'base' == c:
+                self.fawn_on_base()
+                break
+            elif 'jp' == c:
+                self.fawn_on_jp()
+                break
+            else:
+                pass
+
     def my_name(self):
         print(self.name)
 
@@ -53,6 +81,12 @@ class Cat(Context):
 
     def greet_jp(self):
         print("にゃー")
+
+    def fawn_on_base(self):
+        print("cat base fawn_on")
+
+    def fawn_on_jp(self):
+        print("にゃん（甘え）")
 
 
 # Main
@@ -67,9 +101,11 @@ if __name__ == '__main__':
     p.activate('jp')
     p.greet()
     c.greet()
+    p.apologize()
+    c.fawn_on()
     c.deactivate('jp')
-    p.greet()
-    c.greet()
+    p.apologize()
+    c.fawn_on()
 
     # result
     # person base greet
@@ -78,7 +114,9 @@ if __name__ == '__main__':
     # ['base', 'jp']
     # こんにちは
     # にゃー
+    # ごめんなさい
+    # にゃん（甘え）
     # Deactivated
     # ['base']
-    # person base greet
-    # cat base greet
+    # person base apologize
+    # cat base fawn_on

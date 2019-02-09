@@ -7,17 +7,29 @@ class PLanguage(object):
     def greet(self):
         print("person base greet")
 
+    def apologize(self):
+        print("person base apologize")
+
 class PJapanese(PLanguage):
     def greet(self):
         print("こんにちは")
+
+    def apologize(self):
+        print("ごめんなさい")
 
 class CLanguage(object):
     def greet(self):
         print("cat base greet")
 
+    def fawn_on(self):
+        print("cat base fawn_on")
+
 class CJapanese(CLanguage):
     def greet(self):
         print("にゃー")
+
+    def fawn_on(self):
+        print("にゃん（甘え）")
 
 class Person(Context):
     def __init__(self, name=''):
@@ -31,6 +43,10 @@ class Person(Context):
     def greet(self):
         self.change()
         self.lang.greet()
+
+    def apologize(self):
+        self.change()
+        self.lang.apologize()
 
     def change(self):
         for c in reversed(self.layers):
@@ -57,6 +73,10 @@ class Cat(Context):
         self.change()
         self.lang.greet()
 
+    def fawn_on(self):
+        self.change()
+        self.lang.fawn_on()
+
     def change(self):
         for c in reversed(self.layers):
             if 'base' == c:
@@ -82,9 +102,11 @@ if __name__ == '__main__':
     p.activate('jp')
     p.greet()
     c.greet()
+    p.apologize()
+    c.fawn_on()
     c.deactivate('jp')
-    p.greet()
-    c.greet()
+    p.apologize()
+    c.fawn_on()
 
     # person base greet
     # cat base greet
@@ -92,7 +114,9 @@ if __name__ == '__main__':
     # ['base', 'jp']
     # こんにちは
     # にゃー
+    # ごめんなさい
+    # にゃん（甘え）
     # Deactivated
     # ['base']
-    # person base greet
-    # cat base greet
+    # person base apologize
+    # cat base fawn_on

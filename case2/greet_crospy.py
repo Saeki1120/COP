@@ -15,9 +15,17 @@ class Person(CPy):
     def greet(self):
         print("person base greet")
 
+    @cpybase
+    def apologize(self):
+        print("person base apologize")
+
 @cpylayer(Person, 'jp', 'greet')
 def greet(self):
     print("こんにちは")
+
+@cpylayer(Person, 'jp', 'apologize')
+def greet(self):
+    print("ごめんなさい")
 
 class Cat(CPy):
     def __init__(self, name=''):
@@ -31,11 +39,18 @@ class Cat(CPy):
     def greet(self):
         print("cat base greet")
 
+    @cpybase
+    def fawn_on(self):
+        print("cat base fawn_on")
 
 
 @cpylayer(Cat, 'jp', 'greet')
 def greet(self):
     print("にゃー")
+
+@cpylayer(Cat, 'jp', 'fawn_on')
+def greet(self):
+    print("にゃん（甘え）")
 
 
 # Main
@@ -51,13 +66,17 @@ if __name__ == '__main__':
     p.activate('jp')
     p.greet()
     c.greet()
+    p.apologize()
+    c.fawn_on()
     c.deactivate('jp')
-    p.greet()
-    c.greet()
+    p.apologize()
+    c.fawn_on()
 
     # person base greet
     # cat base greet
     # こんにちは
     # にゃー
-    # person base greet
-    # cat base greet
+    # ごめんなさい
+    # にゃん（甘え）
+    # person base apologize
+    # cat base fawn_on
