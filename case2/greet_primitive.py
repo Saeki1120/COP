@@ -16,6 +16,9 @@ class Person(Context):
             elif 'jp' == c:
                 self.greet_jp()
                 break
+            elif 'en' == c:
+                self.greet_en()
+                break
             else:
                 pass
 
@@ -27,6 +30,9 @@ class Person(Context):
 
     def greet_jp(self):
         print("こんにちは")
+
+    def greet_en(self):
+        print("Hello")
 
 
 class Cat(Context):
@@ -42,6 +48,9 @@ class Cat(Context):
             elif 'jp' == c:
                 self.greet_jp()
                 break
+            elif 'en' == c:
+                self.greet_en()
+                break
             else:
                 pass
 
@@ -53,6 +62,9 @@ class Cat(Context):
 
     def greet_jp(self):
         print("にゃー")
+
+    def greet_en(self):
+        print("mew")
 
 
 # Main
@@ -67,7 +79,7 @@ if __name__ == '__main__':
     p.activate('jp')
     p.greet()
     c.greet()
-    c.deactivate('jp')
+    c.activate('en')
     p.greet()
     c.greet()
 
@@ -78,7 +90,7 @@ if __name__ == '__main__':
     # ['base', 'jp']
     # こんにちは
     # にゃー
-    # Deactivated
-    # ['base']
-    # person base greet
-    # cat base greet
+    # Activated
+    # ['base', 'jp', 'en']
+    # Hello
+    # mew

@@ -11,6 +11,10 @@ class PJapanese(PLanguage):
     def greet(self):
         print("こんにちは")
 
+class PEnglish(PLanguage):
+    def greet(self):
+        print("Hello")
+
 class CLanguage(object):
     def greet(self):
         print("cat base greet")
@@ -18,6 +22,10 @@ class CLanguage(object):
 class CJapanese(CLanguage):
     def greet(self):
         print("にゃー")
+
+class CEnglish(CLanguage):
+    def greet(self):
+        print("mew")
 
 class Person(Context):
     def __init__(self, name=''):
@@ -39,6 +47,9 @@ class Person(Context):
                 break
             elif 'jp' == c:
                 self.lang = PJapanese()
+                break
+            elif 'en' == c:
+                self.lang = PEnglish()
                 break
             else:
                 pass
@@ -65,6 +76,9 @@ class Cat(Context):
             elif 'jp' == c:
                 self.lang = CJapanese()
                 break
+            elif 'en' == c:
+                self.lang = CEnglish()
+                break
             else:
                 pass
 
@@ -82,7 +96,7 @@ if __name__ == '__main__':
     p.activate('jp')
     p.greet()
     c.greet()
-    c.deactivate('jp')
+    c.activate('en')
     p.greet()
     c.greet()
 
@@ -92,7 +106,7 @@ if __name__ == '__main__':
     # ['base', 'jp']
     # こんにちは
     # にゃー
-    # Deactivated
-    # ['base']
-    # person base greet
-    # cat base greet
+    # Activated
+    # ['base', 'jp', 'en']
+    # Hello
+    # mew

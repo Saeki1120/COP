@@ -19,6 +19,10 @@ class Person(CPy):
 def greet(self):
     print("こんにちは")
 
+@cpylayer(Person, 'en', 'greet')
+def greet(self):
+    print("Hello")
+
 class Cat(CPy):
     def __init__(self, name=''):
         super(Cat, self).__init__()
@@ -37,6 +41,10 @@ class Cat(CPy):
 def greet(self):
     print("にゃー")
 
+@cpylayer(Cat, 'en', 'greet')
+def greet(self):
+    print("mew")
+
 
 # Main
 # ContextPy implimented by OOP
@@ -51,7 +59,7 @@ if __name__ == '__main__':
     p.activate('jp')
     p.greet()
     c.greet()
-    c.deactivate('jp')
+    c.activate('en')
     p.greet()
     c.greet()
 
@@ -59,5 +67,5 @@ if __name__ == '__main__':
     # cat base greet
     # こんにちは
     # にゃー
-    # person base greet
-    # cat base greet
+    # Hello
+    # mew
