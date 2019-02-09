@@ -3,28 +3,7 @@
 
 import sys
 
-class Context(object):
-    layers = ['base']
-    def __init__(cls):
-        cls.init_layer()
-
-    @classmethod
-    def init_layer(cls):
-        if not hasattr(cls, 'layers'):
-            cls.layers = ['base']
-
-    @classmethod
-    def activate(cls, layer):
-        if not layer == 'base':
-            cls.layers.append(layer)
-
-    @classmethod
-    def deactivate(cls, layer):
-        if not layer == 'base':
-            cls.layers.remove(layer)
-
-    def change(self):
-        pass
+from my_context import *
 
 class Cat(Context):
     def __init__(self, name=''):
@@ -44,6 +23,7 @@ class Cat(Context):
                 break
             else:
                 pass
+
     def greet_base(self):
         print("base greet cat")
 
@@ -79,10 +59,20 @@ class Person(Context):
     def greet_jp(self):
         print("こんにちは")
 
+
+class ExPerson(Person):
+    def __init__(self, name=''):
+        super(ExPerson, self).__init__(name)
+        self.name = name
+        super(ExPerson, self).func()
+        print super(ExPerson, self).__class__.__name__
+
+
 if __name__ == '__main__':
     p1 = Person("Yuta")
     p2 = Person("John")
     p1.func()
+    p3 = ExPerson('J')
     # for key, value in c.__dict__.items():
     #     print(key, ':', value)
     # c = Cat("Nyan")
