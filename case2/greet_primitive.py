@@ -30,7 +30,7 @@ class Person(Context):
 
 
 class Cat(Context):
-    def __init__(self, name='', value=50):
+    def __init__(self, name=''):
         super(Cat, self).__init__()
         self.name = name
 
