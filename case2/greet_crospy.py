@@ -19,6 +19,7 @@ class Person(CPy):
 def greet(self):
     print("こんにちは")
 
+
 class Cat(CPy):
     def __init__(self, name=''):
         super(Cat, self).__init__()
@@ -30,8 +31,6 @@ class Cat(CPy):
     @cpybase
     def greet(self):
         print("cat base greet")
-
-
 
 @cpylayer(Cat, 'jp', 'greet')
 def greet(self):
