@@ -15,10 +15,6 @@ class Person(CPy):
     def greet(self):
         print("person base greet")
 
-    # @cpybase
-    # def speak(self):
-    #     self.greet()
-
 @cpylayer(Person, 'jp', 'greet')
 def greet(self):
     print("こんにちは")
@@ -28,14 +24,6 @@ def greet(self):
     self.my_name()
     self.proceed()
 
-# @cpylayer(Person, 'jp', 'speak')
-# def speak(self):
-#     self.proceed()
-#
-# @cpylayer(Person, 'name', 'speak')
-# def speak(self):
-#     self.my_name()
-#     self.proceed()
 
 class Cat(CPy):
     def __init__(self, name=''):
@@ -70,6 +58,7 @@ def speak(self):
     self.my_name()
     self.proceed()
 
+
 # Main
 # ContextPy implimented by OOP
 if __name__ == '__main__':
@@ -99,7 +88,7 @@ if __name__ == '__main__':
     c.speak()
 
     # Cat側は無理やり name jp と jp name で同じ振る舞いをさせ得るための実装
-    
+
     # person base greet
     # cat base greet
     # ------------

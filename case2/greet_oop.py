@@ -13,12 +13,14 @@ class PLanguage(object):
     def greet(self):
         print("person base greet")
 
+
 class PJapanese(PLanguage):
     def __init__(self, name=''):
         super(PJapanese, self).__init__(name)
 
     def greet(self):
         print("こんにちは")
+
 
 class PLName(PLanguage):
     def __init__(self, name=''):
@@ -36,6 +38,7 @@ class PJName(PJapanese):
         self.my_name()
         super(PJName, self).greet()
 
+
 class CLanguage(object):
     def __init__(self, name=''):
         self.name = name
@@ -46,12 +49,14 @@ class CLanguage(object):
     def greet(self):
         print("cat base greet")
 
+
 class CJapanese(CLanguage):
     def __init__(self, name=''):
         super(CJapanese, self).__init__(name)
 
     def greet(self):
         print("にゃー")
+
 
 class CName(CLanguage):
     def __init__(self, name=''):
@@ -61,6 +66,7 @@ class CName(CLanguage):
         self.my_name()
         super(CName, self).greet()
 
+
 class CJapaneseName(CLanguage):
     def __init__(self, name=''):
         super(CJapaneseName, self).__init__(name)
@@ -68,6 +74,7 @@ class CJapaneseName(CLanguage):
     def greet(self):
         self.my_name()
         print("にゃー")
+
 
 class Person(Context):
     def __init__(self, name=''):
@@ -84,21 +91,21 @@ class Person(Context):
 
     def change(self):
         name_flag = False
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 if not name_flag:
                     self.lang = PLanguage(self.name)
                     break
                 else:
                     break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 if not name_flag:
                     self.lang = PJapanese(self.name)
                     break
                 else:
                     self.lang = PJName(self.name)
                     break
-            elif 'name' == c:
+            elif 'name' == l:
                 self.lang = PLName(self.name)
                 name_flag = True
             else:
@@ -121,21 +128,21 @@ class Cat(Context):
     def change(self):
         name_flag = False
         jp_flag = False
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 if not (name_flag or jp_flag) :
                     self.lang = CLanguage(self.name)
                     break
                 else:
                     break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 if not name_flag:
                     self.lang = CJapanese(self.name)
                     jp_flag = True
                 else:
                     self.lang = CJapaneseName(self.name)
                     break
-            elif 'name' == c:
+            elif 'name' == l:
                 if not jp_flag:
                     self.lang = CName(self.name)
                     name_flag = True
@@ -145,19 +152,6 @@ class Cat(Context):
                     break
             else:
                 pass
-
-        # for c in reversed(self.layers):
-        #     if 'base' == c:
-        #         self.lang = CLanguage(self.name)
-        #         break
-        #     elif 'jp' == c:
-        #         self.lang = CJapanese(self.name)
-        #         break
-        #     elif 'name' == c:
-        #         self.lang = CName(self.name)
-        #         break
-        #     else:
-        #         pass
 
 
 # Main
@@ -188,6 +182,7 @@ if __name__ == '__main__':
     p.greet()
     c.greet()
 
+    # Cat側は無理やり name jp と jp name で同じ振る舞いをさせ得るための実装
     # person base greet
     # cat base greet
     # ------------

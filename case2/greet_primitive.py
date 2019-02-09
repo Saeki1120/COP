@@ -9,14 +9,14 @@ class Person(Context):
         self.name = name
 
     def greet(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.greet_jp()
                 break
-            elif 'name' == c:
+            elif 'name' == l:
                 self.greet_name()
             else:
                 pass
@@ -35,31 +35,31 @@ class Person(Context):
 
 
 class Cat(Context):
-    def __init__(self, name='', value=50):
+    def __init__(self, name=''):
         super(Cat, self).__init__()
         self.name = name
 
     def greet(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.greet_jp()
                 break
-            elif 'name' == c:
+            elif 'name' == l:
                 pass
             else:
                 pass
 
     def speak(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 pass
-            elif 'name' == c:
+            elif 'name' == l:
                 self.speak_name()
             else:
                 pass
