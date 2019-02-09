@@ -78,11 +78,11 @@ class Cat(Context):
         self.lang.fawn_on()
 
     def change(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.lang = CLanguage()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.lang = CJapanese()
                 break
             else:

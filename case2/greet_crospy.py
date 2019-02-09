@@ -27,6 +27,7 @@ def greet(self):
 def greet(self):
     print("ごめんなさい")
 
+
 class Cat(CPy):
     def __init__(self, name=''):
         super(Cat, self).__init__()
@@ -42,7 +43,6 @@ class Cat(CPy):
     @cpybase
     def fawn_on(self):
         print("cat base fawn_on")
-
 
 @cpylayer(Cat, 'jp', 'greet')
 def greet(self):

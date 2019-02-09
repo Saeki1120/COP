@@ -9,22 +9,22 @@ class Person(Context):
         self.name = name
 
     def greet(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.greet_jp()
                 break
             else:
                 pass
 
     def apologize(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.apologize_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.apologize_jp()
                 break
             else:
@@ -47,27 +47,27 @@ class Person(Context):
 
 
 class Cat(Context):
-    def __init__(self, name='', value=50):
+    def __init__(self, name=''):
         super(Cat, self).__init__()
         self.name = name
 
     def greet(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.greet_jp()
                 break
             else:
                 pass
 
     def fawn_on(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.fawn_on_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.fawn_on_jp()
                 break
             else:
