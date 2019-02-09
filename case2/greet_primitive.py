@@ -9,14 +9,14 @@ class Person(Context):
         self.name = name
 
     def greet(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.greet_jp()
                 break
-            elif 'en' == c:
+            elif 'en' == l:
                 self.greet_en()
                 break
             else:
@@ -41,14 +41,14 @@ class Cat(Context):
         self.name = name
 
     def greet(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.greet_base()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.greet_jp()
                 break
-            elif 'en' == c:
+            elif 'en' == l:
                 self.greet_en()
                 break
             else:

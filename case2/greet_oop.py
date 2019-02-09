@@ -7,25 +7,31 @@ class PLanguage(object):
     def greet(self):
         print("person base greet")
 
+
 class PJapanese(PLanguage):
     def greet(self):
         print("こんにちは")
+
 
 class PEnglish(PLanguage):
     def greet(self):
         print("Hello")
 
+
 class CLanguage(object):
     def greet(self):
         print("cat base greet")
+
 
 class CJapanese(CLanguage):
     def greet(self):
         print("にゃー")
 
+
 class CEnglish(CLanguage):
     def greet(self):
         print("mew")
+
 
 class Person(Context):
     def __init__(self, name=''):
@@ -41,14 +47,14 @@ class Person(Context):
         self.lang.greet()
 
     def change(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.lang = PLanguage()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.lang = PJapanese()
                 break
-            elif 'en' == c:
+            elif 'en' == l:
                 self.lang = PEnglish()
                 break
             else:
@@ -69,14 +75,14 @@ class Cat(Context):
         self.lang.greet()
 
     def change(self):
-        for c in reversed(self.layers):
-            if 'base' == c:
+        for l in reversed(self.layers):
+            if 'base' == l:
                 self.lang = CLanguage()
                 break
-            elif 'jp' == c:
+            elif 'jp' == l:
                 self.lang = CJapanese()
                 break
-            elif 'en' == c:
+            elif 'en' == l:
                 self.lang = CEnglish()
                 break
             else:
