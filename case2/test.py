@@ -67,12 +67,19 @@ class ExPerson(Person):
         super(ExPerson, self).func()
         print super(ExPerson, self).__class__.__name__
 
+class ExExPerson(ExPerson):
+    def __init__(self, name=''):
+        super(ExExPerson, self).__init__(name)
+        self.name = name
+        super(ExExPerson, self).func()
+        print super(ExExPerson, self).__class__.__name__
 
 if __name__ == '__main__':
     p1 = Person("Yuta")
     p2 = Person("John")
     p1.func()
     p3 = ExPerson('J')
+    p4 = ExExPerson('J')
     # for key, value in c.__dict__.items():
     #     print(key, ':', value)
     # c = Cat("Nyan")
