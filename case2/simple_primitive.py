@@ -15,6 +15,8 @@ class Test1(Context):
                 self.context_method1_1_base()
             elif 'layer1_1' == l:
                 self.context_method1_1_layer1_1()
+            elif 'layer1_2' == l:
+                self.context_method1_1_layer1_2()
             else:
                 pass
 
@@ -24,6 +26,10 @@ class Test1(Context):
 
     def context_method1_1_layer1_1(self):
         self.dim1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1
+
+    def context_method1_1_layer1_2(self):
+        self.dim1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1
 
 
