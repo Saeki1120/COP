@@ -12,64 +12,76 @@ class Test1(Context):
         self.dim2_1 = dim2_1
         self.dim2_2 = dim2_2
 
-    def context_method1_1(self):
+    def context_method1(self):
         for l in reversed(self.layers):
             if 'base' == l:
-                self.context_method1_1_base()
+                self.context_method1_base()
             elif 'layer1_1' == l:
-                self.context_method1_1_layer1_1()
+                self.context_method1_layer1_1()
             elif 'layer1_2' == l:
-                self.context_method1_1_layer1_2()
+                self.context_method1_layer1_2()
             elif 'layer2_1' == l:
-                self.context_method1_1_layer2_1()
+                self.context_method1_layer2_1()
+            elif 'layer2_2' == l:
+                self.context_method1_layer2_2()
             else:
                 pass
 
-    def context_method2_1(self):
+    def context_method1(self):
         for l in reversed(self.layers):
             if 'base' == l:
-                self.context_method2_1_base()
+                self.context_method1_base()
             elif 'layer1_1' == l:
-                self.context_method2_1_layer1_1()
+                self.context_method1_layer1_1()
             elif 'layer1_2' == l:
-                self.context_method2_1_layer1_2()
+                self.context_method1_layer1_2()
             elif 'layer2_1' == l:
-                self.context_method2_1_layer2_1()
+                self.context_method1_layer2_1()
+            elif 'layer2_2' == l:
+                self.context_method1_layer2_2()
             else:
                 pass
 
-    def context_method1_1_base(self):
+    def context_method1_base(self):
         self.dim1_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         self.dim1_2 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1, self.dim1_2
 
-    def context_method1_1_layer1_1(self):
+    def context_method1_layer1_1(self):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1
 
-    def context_method1_1_layer1_2(self):
+    def context_method1_layer1_2(self):
         self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1
 
-    def context_method1_1_layer2_1(self):
+    def context_method1_layer2_1(self):
         self.dim1_2 = "layer2_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_2
 
-    def context_method2_1_base(self):
+    def context_method1_layer2_2(self):
+        self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_2
+
+    def context_method1_base(self):
         self.dim2_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         self.dim2_2 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1, self.dim2_2
 
-    def context_method2_1_layer1_1(self):
+    def context_method1_layer1_1(self):
         self.dim2_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1
 
-    def context_method2_1_layer1_2(self):
+    def context_method1_layer1_2(self):
         self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1
 
-    def context_method2_1_layer2_1(self):
+    def context_method1_layer2_1(self):
         self.dim2_2 = "layer2_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim2_2
+
+    def context_method1_layer2_2(self):
+        self.dim2_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_2
 
 # Main
@@ -77,17 +89,17 @@ if __name__ == '__main__':
     print('Sample primitive implimented')
 
     t1 = Test1()
-    t1.context_method1_1()
-    t1.context_method2_1()
+    t1.context_method1()
+    t1.context_method1()
     print ("------------------------")
     t1.activate('layer1_1')
-    t1.context_method1_1()
-    t1.context_method2_1()
+    t1.context_method1()
+    t1.context_method1()
     print ("------------------------")
     t1.activate('layer1_2')
-    t1.context_method1_1()
-    t1.context_method2_1()
+    t1.context_method1()
+    t1.context_method1()
     print ("------------------------")
     t1.activate('layer1_2')
-    t1.context_method1_1()
-    t1.context_method2_1()
+    t1.context_method1()
+    t1.context_method1()
