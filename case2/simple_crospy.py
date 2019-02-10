@@ -26,9 +26,21 @@ def context_method1_1(self):
     print self.dim1_1
     self.proceed()
 
+@cpylayer(Test1, 'layer1_2', 'context_method1_1')
+def context_method1_1(self):
+    self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_1
+    self.proceed()
+
 @cpylayer(Test1, 'layer1_1', 'context_method2_1')
 def context_method2_1(self):
     self.dim2_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim2_1
+    self.proceed()
+
+@cpylayer(Test1, 'layer1_2', 'context_method2_1')
+def context_method2_1(self):
+    self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
     print self.dim2_1
     self.proceed()
 
@@ -42,5 +54,9 @@ if __name__ == '__main__':
     t1.context_method2_1()
     print ("------------------------")
     t1.activate('layer1_1')
+    t1.context_method1_1()
+    t1.context_method2_1()
+    print ("------------------------")
+    t1.activate('layer1_2')
     t1.context_method1_1()
     t1.context_method2_1()
