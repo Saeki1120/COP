@@ -22,12 +22,6 @@ def context_method1_1(self):
     print self.dim1
     self.proceed()
 
-@cpylayer(Test1, 'layer1_2', 'context_method1_1')
-def context_method1_1(self):
-    self.dim1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
-    print self.dim1
-    self.proceed()
-
 @cpylayer(Test1, 'layer2_1', 'context_method1_1')
 def context_method1_1(self):
     self.dim2 = "layer2_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name

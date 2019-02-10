@@ -23,13 +23,6 @@ class T1Layer1_1(T1BaseLayer):
         self.dim1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1
 
-class T1Layer1_2(T1BaseLayer):
-    def __init__(self, dim1='dim1', dim2="dim2"):
-        self.dim1 = dim1
-
-    def context_method1_1(self):
-        self.dim1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
-        print self.dim1
 
 class T1Layer2_1(T1BaseLayer):
     def __init__(self, dim1='dim1', dim2="dim2"):
@@ -56,8 +49,6 @@ class Test1(Context):
             self.test1 = T1BaseLayer(self.dim1, self.dim2)
         elif 'layer1_1' == layer:
             self.test1 = T1Layer1_1(self.dim1, self.dim2)
-        elif 'layer1_2' == layer:
-            self.test1 = T1Layer1_2(self.dim1, self.dim2)
         elif 'layer2_1' == layer:
             self.test1 = T1Layer2_1(self.dim1, self.dim2)
         else:
