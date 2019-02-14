@@ -41,7 +41,9 @@ class T1BaseLayer(object):
 
 class T1Layer1_1(T1BaseLayer):
     def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1', dim1_2='dim1_2', dim2_2='dim2_2', dim4_2='dim4_2'):
-        self.super(T1Layer1_1, self).__init__(dim1_1, dim2_1, dim4_1, dim1_2, dim2_2, dim4_2)
+        self.dim1_1 = dim1_1
+        self.dim2_1 = dim2_1
+        self.dim4_1 = dim4_1
 
     def context_method1(self):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
@@ -64,7 +66,9 @@ class T1Layer1_1(T1BaseLayer):
 
 class T1Layer1_2(T1BaseLayer):
     def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1', dim1_2='dim1_2', dim2_2='dim2_2', dim4_2='dim4_2'):
-        self.super(T1Layer1_2, self).__init__(dim1_1, dim2_1, dim4_1, dim1_2, dim2_2, dim4_2)
+        self.dim1_1 = dim1_1
+        self.dim2_1 = dim2_1
+        self.dim4_1 = dim4_1
 
     def context_method1(self):
         self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
@@ -87,7 +91,9 @@ class T1Layer1_2(T1BaseLayer):
 
 class T1Layer2_1(T1BaseLayer):
     def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1', dim1_2='dim1_2', dim2_2='dim2_2', dim4_2='dim4_2'):
-        self.super(T1Layer2_1, self).__init__(dim1_1, dim2_1, dim4_1, dim1_2, dim2_2, dim4_2)
+        self.dim1_2 = dim1_2
+        self.dim2_2 = dim2_2
+        self.dim4_2 = dim4_2
 
     def context_method1(self):
         self.dim1_2 = "layer2_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
@@ -105,6 +111,31 @@ class T1Layer2_1(T1BaseLayer):
     def context_method4(self):
         self.dim1_2 = "layer2_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         self.dim4_2 = "layer2_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_2, self.dim4_2
+
+
+class T1Layer2_2(T1BaseLayer):
+    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1', dim1_2='dim1_2', dim2_2='dim2_2', dim4_2='dim4_2'):
+        self.dim1_2 = dim1_2
+        self.dim2_2 = dim2_2
+        self.dim4_2 = dim4_2
+
+    def context_method1(self):
+        self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_2
+
+    def context_method2(self):
+        self.dim2_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim2_2
+
+    def context_method3(self):
+        self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim2_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_2, self.dim2_2
+
+    def context_method4(self):
+        self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim4_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_2, self.dim4_2
 
 
@@ -147,6 +178,8 @@ class Test1(Context):
             self.test1 = T1Layer1_2(self.dim1_1, self.dim2_1, self.dim4_1, self.dim1_2, self.dim2_2, self.dim4_2)
         elif 'layer2_1' == layer:
             self.test1 = T1Layer2_1(self.dim1_2, self.dim2_2, self.dim4_2, self.dim1_2, self.dim2_2, self.dim4_2)
+        elif 'layer2_2' == layer:
+            self.test1 = T1Layer2_2(self.dim1_2, self.dim2_2, self.dim4_2, self.dim1_2, self.dim2_2, self.dim4_2)
 
 
 # Main

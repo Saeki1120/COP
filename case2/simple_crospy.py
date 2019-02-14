@@ -122,6 +122,34 @@ def context_method4(self):
     print self.dim1_2, self.dim4_2
     self.proceed()
 
+
+@cpylayer(Test1, 'layer2_2', 'context_method1')
+def context_method1(self):
+    self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_2
+    self.proceed()
+
+@cpylayer(Test1, 'layer2_2', 'context_method2')
+def context_method2(self):
+    self.dim2_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim2_2
+    self.proceed()
+
+@cpylayer(Test1, 'layer2_2', 'context_method3')
+def context_method3(self):
+    self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    self.dim2_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_2, self.dim2_2
+    self.proceed()
+
+@cpylayer(Test1, 'layer2_2', 'context_method4')
+def context_method4(self):
+    self.dim1_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    self.dim4_2 = "layer2_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_2, self.dim4_2
+    self.proceed()
+
+
 # Main
 if __name__ == '__main__':
     print('Sample implimented by CROSPy')
