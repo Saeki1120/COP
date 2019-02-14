@@ -3,50 +3,83 @@
 
 import sys
 from my_context import *
+import rospy
 
 class T1BaseLayer(object):
-    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1'):
+    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1'):
         self.dim1_1 = dim1_1
         self.dim2_1 = dim2_1
+        self.dim4_1 = dim4_1
 
-    def context_method1_1(self):
+    def context_method1(self):
         self.dim1_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1
 
-    def context_method2_1(self):
+    def context_method2(self):
         self.dim2_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1
 
+    def context_method3(self):
+        self.dim1_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim2_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim2_1
+
+    def context_method4(self):
+        self.dim1_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim4_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim4_1
+
 
 class T1Layer1_1(T1BaseLayer):
-    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1'):
+    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1'):
         self.dim1_1 = dim1_1
         self.dim2_1 = dim2_1
 
-    def context_method1_1(self):
+    def context_method1(self):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1
 
-    def context_method2_1(self):
+    def context_method2(self):
         self.dim2_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1
 
+    def context_method3(self):
+        self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim2_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim2_1
+
+    def context_method4(self):
+        self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim4_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim4_1
+
 
 class Test1(Context):
-    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1'):
+    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1'):
         super(Test1, self).__init__()
         self.dim1_1 = dim1_1
         self.dim2_1 = dim2_1
+        self.dim4_1 = dim4_1
 
-    def context_method1_1(self):
+    def context_method1(self):
         for l in reversed(self.layers):
             self.change(l)
-            self.test1.context_method1_1()
+            self.test1.context_method1()
 
-    def context_method2_1(self):
+    def context_method2(self):
         for l in reversed(self.layers):
             self.change(l)
-            self.test1.context_method2_1()
+            self.test1.context_method2()
+
+    def context_method3(self):
+        for l in reversed(self.layers):
+            self.change(l)
+            self.test1.context_method3()
+
+    def context_method4(self):
+        for l in reversed(self.layers):
+            self.change(l)
+            self.test1.context_method3()
 
     def change(self, layer):
         if 'base' == layer:
@@ -61,10 +94,17 @@ class Test1(Context):
 if __name__ == '__main__':
     print('Sample implimented by OOP')
 
+    rospy.init_node('simple_oop', anonymous=True)
     t1 = Test1()
-    t1.context_method1_1()
-    t1.context_method2_1()
-    print ("------------------------")
-    t1.activate('layer1_1')
-    t1.context_method1_1()
-    t1.context_method2_1()
+    rate = rospy.Rate(1)
+    while not rospy.is_shutdown():
+        t1.context_method1()
+        rate.sleep()
+
+    # t1 = Test1()
+    # t1.context_method1_1()
+    # t1.context_method2_1()
+    # print ("------------------------")
+    # t1.activate('layer1_1')
+    # t1.context_method1_1()
+    # t1.context_method2_1()
