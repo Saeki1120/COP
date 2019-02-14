@@ -34,6 +34,7 @@ class T1Layer1_1(T1BaseLayer):
     def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1'):
         self.dim1_1 = dim1_1
         self.dim2_1 = dim2_1
+        self.dim4_1 = dim4_1
 
     def context_method1(self):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
@@ -53,6 +54,30 @@ class T1Layer1_1(T1BaseLayer):
         self.dim4_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1, self.dim4_1
 
+
+class T1Layer1_2(T1BaseLayer):
+    def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1'):
+        self.dim1_1 = dim1_1
+        self.dim2_1 = dim2_1
+        self.dim4_1 = dim4_1
+
+    def context_method1(self):
+        self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1
+
+    def context_method2(self):
+        self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim2_1
+
+    def context_method3(self):
+        self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim2_1
+
+    def context_method4(self):
+        self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim4_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim4_1
 
 class Test1(Context):
     def __init__(self, dim1_1='dim1_1', dim2_1='dim2_1', dim4_1='dim4_1'):
@@ -83,11 +108,11 @@ class Test1(Context):
 
     def change(self, layer):
         if 'base' == layer:
-            self.test1 = T1BaseLayer(self.dim1_1, self.dim2_1)
+            self.test1 = T1BaseLayer(self.dim1_1, self.dim2_1, self.dim4_1)
         elif 'layer1_1' == layer:
-            self.test1 = T1Layer1_1(self.dim1_1, self.dim2_1)
-        else:
-            pass
+            self.test1 = T1Layer1_1(self.dim1_1, self.dim2_1, self.dim4_1)
+        elif 'layer1_2' == layer:
+            self.test1 = T1Layer1_1(self.dim1_1, self.dim2_1, self.dim4_1)
 
 
 # Main

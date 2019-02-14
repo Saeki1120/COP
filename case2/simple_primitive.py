@@ -23,8 +23,11 @@ class Test1(Context):
             self.m2 = self.context_method2_layer1_1
             self.m3 = self.context_method3_layer1_1
             self.m4 = self.context_method4_layer1_1
-        else:
-            pass
+        elif 'layer1_2' == layer:
+            self.m1 = self.context_method1_layer1_2
+            self.m2 = self.context_method2_layer1_2
+            self.m3 = self.context_method3_layer1_2
+            self.m4 = self.context_method4_layer1_2
 
     def context_method1(self):
         for l in reversed(self.layers):
@@ -54,6 +57,10 @@ class Test1(Context):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1
 
+    def context_method1_layer1_2(self):
+        self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1
+
     def context_method2_base(self):
         self.dim2_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1
@@ -62,15 +69,23 @@ class Test1(Context):
         self.dim2_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim2_1
 
+    def context_method2_layer1_2(self):
+        self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim2_1
+
     def context_method3_base(self):
         self.dim1_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         self.dim2_1 = "base : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1, self.dim2_1
 
-
     def context_method3_layer1_1(self):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         self.dim2_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim2_1
+
+    def context_method3_layer1_2(self):
+        self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1, self.dim2_1
 
     def context_method4_base(self):
@@ -81,6 +96,11 @@ class Test1(Context):
     def context_method4_layer1_1(self):
         self.dim1_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         self.dim4_1 = "layer1_1 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        print self.dim1_1, self.dim4_1
+
+    def context_method4_layer1_2(self):
+        self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+        self.dim4_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
         print self.dim1_1, self.dim4_1
 
 

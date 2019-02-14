@@ -60,6 +60,32 @@ def context_method4(self):
     self.proceed()
 
 
+@cpylayer(Test1, 'layer1_2', 'context_method1')
+def context_method1(self):
+    self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_1
+    self.proceed()
+
+@cpylayer(Test1, 'layer1_2', 'context_method2')
+def context_method2(self):
+    self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim2_1
+    self.proceed()
+
+@cpylayer(Test1, 'layer1_2', 'context_method3')
+def context_method3(self):
+    self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    self.dim2_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_1, self.dim2_1
+    self.proceed()
+
+@cpylayer(Test1, 'layer1_2', 'context_method4')
+def context_method4(self):
+    self.dim1_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    self.dim4_1 = "layer1_2 : " + self.__class__.__name__ + " : " + sys._getframe().f_code.co_name
+    print self.dim1_1, self.dim4_1
+    self.proceed()
+
 
 # Main
 if __name__ == '__main__':
